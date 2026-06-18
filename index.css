@@ -1,0 +1,1323 @@
+/* ==========================================================================
+   INDEX.CSS
+   PARTE 2.1
+   ========================================================================== */
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --background:#02060d;
+    --background-secondary:#000000;
+
+    --primary:#00bfff;
+    --primary-light:#66dfff;
+
+    --secondary:#00ffd5;
+
+    --text:#f2fbff;
+    --text-soft:#9fd9ff;
+
+    --border:rgba(0,191,255,.20);
+
+}
+
+/* ==========================================================================
+   BODY
+   ========================================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    position:relative;
+
+    font-family:'Oswald',sans-serif;
+
+    color:var(--text);
+
+    background:
+
+    radial-gradient(circle at top,#071525 0%,#030913 45%,#000000 100%);
+
+}
+
+/* ==========================================================================
+   BACKGROUND
+   ========================================================================== */
+
+#background-particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.12;
+
+    background-image:
+
+    radial-gradient(circle,var(--primary-light) 1px,transparent 1px),
+
+    radial-gradient(circle,var(--secondary) 1px,transparent 1px);
+
+    background-size:
+
+    260px 260px,
+
+    420px 420px;
+
+}
+
+/* ==========================================================================
+   SCANNER FRAME - NÉVOA ULTRA VISÍVEL (FOG EFFECT)
+   ========================================================================== */
+
+#scanner-frame {
+    position: fixed;
+    inset: 0px; /* Gruda totalmente nas bordas da tela */
+    pointer-events: none;
+    z-index: 1;
+    
+    /* Aumentamos o borrão e adicionamos várias camadas de sombra espessa para criar a fumaça */
+    filter: blur(45px) 
+            drop-shadow(0 0 45px rgba(0, 191, 255, 0.8)) 
+            drop-shadow(0 0 85px rgba(0, 255, 213, 0.5));
+}
+
+/* ==========================================================================
+   LINHAS DE COR (MAIS ESPESSAS PARA GERAR MAIS VOLUME)
+   ========================================================================== */
+
+.scanner-top,
+.scanner-right,
+.scanner-bottom,
+.scanner-left {
+    position: absolute;
+    overflow: hidden;
+}
+
+.scanner-top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px; /* Aumentado de 8px para 25px para dar volume à névoa */
+}
+
+.scanner-top::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 100%;
+    left: -450px;
+    background: linear-gradient(90deg, transparent, #4285f4, #34a853, #fbbc05, #ea4335, transparent);
+    animation: scannerTop 6s linear infinite;
+}
+
+.scanner-bottom {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px; /* Aumentado para 25px */
+}
+
+.scanner-bottom::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 100%;
+    right: -450px;
+    background: linear-gradient(90deg, transparent, #ea4335, #fbbc05, #34a853, #4285f4, transparent);
+    animation: scannerBottom 6s linear infinite;
+}
+
+.scanner-left {
+    left: 0;
+    top: 0;
+    width: 25px; /* Aumentado para 25px */
+    height: 100%;
+}
+
+.scanner-left::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    bottom: -450px;
+    background: linear-gradient(180deg, transparent, #4285f4, #34a853, #fbbc05, #ea4335, transparent);
+    animation: scannerLeft 6s linear infinite;
+}
+
+.scanner-right {
+    right: 0;
+    top: 0;
+    width: px; /* Aumentado para 25px */
+    height: 100%;
+}
+
+.scanner-right::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    top: -450px;
+    background: linear-gradient(180deg, transparent, #ea4335, #fbbc05, #34a853, #4285f4, transparent);
+    animation: scannerRight 6s linear infinite;
+}
+/* ==========================================================================
+   TOPO
+   ========================================================================== */
+
+.scanner-top{
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:8px; /* Mais espesso para aumentar o volume da névoa */
+
+}
+
+.scanner-top::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px; /* Fita de cor maior para transição suave */
+    height:100%;
+
+    left:-350px;
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    #4285f4,
+
+    #34a853,
+
+    #fbbc05,
+
+    #ea4335,
+
+    transparent
+
+    );
+
+    animation:scannerTop 6s linear infinite;
+
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+.scanner-bottom{
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:8px;
+
+}
+
+.scanner-bottom::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:100%;
+
+    right:-350px;
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    #ea4335,
+
+    #fbbc05,
+
+    #34a853,
+
+    #4285f4,
+
+    transparent
+
+    );
+
+    animation:scannerBottom 6s linear infinite;
+
+}
+
+/* ==========================================================================
+   ESQUERDA
+   ========================================================================== */
+
+.scanner-left{
+
+    left:0;
+    top:0;
+
+    width:8px;
+    height:100%;
+
+}
+
+.scanner-left::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+    height:350px;
+
+    bottom:-350px;
+
+    background:
+
+    linear-gradient(
+
+    180deg,
+
+    transparent,
+
+    #4285f4,
+
+    #34a853,
+
+    #fbbc05,
+
+    #ea4335,
+
+    transparent
+
+    );
+
+    animation:scannerLeft 6s linear infinite;
+
+}
+
+/* ==========================================================================
+   DIREITA
+   ========================================================================== */
+
+.scanner-right{
+
+    right:0;
+    top:0;
+
+    width:8px;
+    height:100%;
+
+}
+
+.scanner-right::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+    height:350px;
+
+    top:-350px;
+
+    background:
+
+    linear-gradient(
+
+    180deg,
+
+    transparent,
+
+    #ea4335,
+
+    #fbbc05,
+
+    #34a853,
+
+    #4285f4,
+
+    transparent
+
+    );
+
+    animation:scannerRight 6s linear infinite;
+
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes scannerTop{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(calc(100vw + 400px));
+
+    }
+
+}
+
+@keyframes scannerBottom{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(calc(-100vw - 400px));
+
+    }
+
+}
+
+@keyframes scannerLeft{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(calc(-100vh - 400px));
+
+    }
+
+}
+
+@keyframes scannerRight{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(calc(100vh + 400px));
+
+    }
+
+}
+
+/* ==========================================================================
+   PAINEL PRINCIPAL
+   ========================================================================== */
+
+#painel-principal{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(900px,88vw);
+
+    padding:70px;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+    background:rgba(3,10,20,.88);
+
+    transition:
+
+    transform .35s ease,
+
+    border-color .35s ease,
+
+    box-shadow .35s ease;
+
+}
+
+#painel-principal:hover{
+
+    border-color:rgba(0,191,255,.45);
+
+    box-shadow:
+
+    0 0 25px rgba(0,191,255,.08);
+
+}
+/* ==========================================================================
+   PARTE 2.2
+   TÍTULOS • TEXTOS • BOTÕES • STATUS
+   ========================================================================== */
+
+
+/* ==========================================================================
+   INTRODUÇÃO (ESTRUTURA COMPATIVEL COM EFEITO MÁQUINA DE ESCREVER)
+   ========================================================================== */
+
+#introducao{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-bottom:70px;
+
+}
+
+#introducao span{
+
+    display:inline-block;
+
+    width: max-content;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    color:var(--primary-light);
+
+    font-size:2rem;
+
+    font-weight:400;
+
+    letter-spacing:1px;
+
+    line-height:1.6;
+
+    padding-right: 4px;
+
+    transition:.35s;
+
+}
+
+#introducao span:hover{
+
+    color:white;
+
+    transform:translateX(10px);
+
+}
+
+/* Cursor piscante da digitação */
+@keyframes piscarCursor {
+    50% { border-color: transparent; }
+}
+
+#introducao span[style*="border-right"] {
+    animation: piscarCursor 0.6s step-end infinite !important;
+}
+
+
+/* ==========================================================================
+   TÍTULO
+   ========================================================================== */
+
+#titulo{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+#titulo h1{
+
+    font-size:3.2rem;
+
+    font-weight:700;
+
+    color:white;
+
+    letter-spacing:1px;
+
+    line-height:1.3;
+
+}
+
+
+/* ==========================================================================
+   ESCOLHAS
+   ========================================================================== */
+
+#escolhas{
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+}
+
+.pergunta{
+
+    color:var(--text-soft);
+
+    font-size:1.7rem;
+
+    margin-bottom:35px;
+
+}
+
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+
+nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:24px;
+
+}
+
+
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+
+.botao{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:240px;
+
+    padding:18px 35px;
+
+    text-decoration:none;
+
+    color:var(--primary-light);
+
+    border:1px solid rgba(0,191,255,.35);
+
+    letter-spacing:1px;
+
+    font-size:1.25rem;
+
+    transition:.35s;
+
+}
+
+
+/* Linha luminosa */
+
+.botao::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.15),
+
+        transparent
+
+    );
+
+    transition:.6s;
+
+}
+
+
+/* Hover */
+
+.botao:hover{
+
+    color:white;
+
+    border-color:var(--primary);
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 0 20px rgba(0,191,255,.12);
+
+}
+
+
+.botao:hover::before{
+
+    left:100%;
+
+}
+
+
+/* Clique */
+
+.botao:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================================================
+   MENSAGENS
+   ========================================================================== */
+
+#mensagens{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    margin-top:15px;
+
+}
+
+.mensagem{
+
+    text-align:center;
+
+    color:var(--text-soft);
+
+    font-size:1.3rem;
+
+    letter-spacing:.5px;
+
+    opacity:.75;
+
+    transition:.35s;
+
+}
+
+.mensagem:hover{
+
+    opacity:1;
+
+    color:white;
+
+}
+
+.destaque{
+
+    color:var(--secondary);
+
+}
+
+.secundaria{
+
+    color:var(--primary-light);
+
+}
+
+/* ==========================================================================
+   STATUS
+   ========================================================================== */
+
+#system-status{
+
+    position:fixed;
+
+    right:35px;
+
+    bottom:35px;
+
+    z-index:5;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    font-size:.85rem;
+
+    letter-spacing:2px;
+
+    color:var(--primary-light);
+
+    opacity:.7;
+
+}
+
+#system-status span{
+
+    position:relative;
+
+    padding-left:14px;
+
+}
+
+/* indicador */
+
+#system-status span::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:50%;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--secondary);
+
+    transform:translateY(-50%);
+
+    animation:pulseStatus 2s infinite;
+
+}
+
+/* ==========================================================================
+   ANIMAÇÃO DO STATUS
+   ========================================================================== */
+
+@keyframes pulseStatus{
+
+    0%{
+
+        opacity:.3;
+
+        transform:translateY(-50%) scale(.8);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:translateY(-50%) scale(1.4);
+
+    }
+
+    100%{
+
+        opacity:.3;
+
+        transform:translateY(-50%) scale(.8);
+
+    }
+
+}
+
+
+/* ==========================================================================
+   SELEÇÃO DE TEXTO
+   ========================================================================== */
+
+::selection{
+
+    background:rgba(0,191,255,.35);
+
+    color:white;
+
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#030913;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#008cff;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#3ec8ff;
+
+}
+/* ==========================================================================
+   INDEX.CSS
+   PARTE 2.3
+   RESPONSIVIDADE • ANIMAÇÕES • PERFORMANCE
+   ========================================================================== */
+
+
+/* ==========================================================================
+   ANIMAÇÕES DE ENTRADA GERAIS
+   ========================================================================== */
+
+#painel-principal{
+
+    animation:fadePainel 1.2s ease forwards;
+
+}
+
+/* Removido o conflito estático da introdução e mensagens */
+#titulo,
+#escolhas{
+
+    opacity:0;
+
+    animation:fadeUp 1s ease forwards;
+
+}
+
+#titulo{
+
+    animation-delay:1.3s;
+
+}
+
+#escolhas{
+
+    animation-delay:1.6s;
+
+}
+
+
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+
+@keyframes fadePainel{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================================================
+   PERFORMANCE
+   ========================================================================== */
+
+#painel-principal,
+.botao,
+.scanner-top::before,
+.scanner-right::before,
+.scanner-bottom::before,
+.scanner-left::before{
+
+    will-change:transform;
+
+}
+
+
+/* ==========================================================================
+   HOVER DO PAINEL
+   ========================================================================== */
+
+#painel-principal{
+
+    transition:
+
+    transform .35s ease,
+
+    border-color .35s ease,
+
+    box-shadow .35s ease;
+
+}
+
+#painel-principal:hover{
+
+    transform:translateY(-4px);
+
+}
+
+
+/* ==========================================================================
+   FUNDO SUAVE
+   ========================================================================== */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    radial-gradient(
+
+        circle at center,
+
+        rgba(0,191,255,.04),
+
+        transparent 70%
+
+    );
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVO - TABLETS
+   ========================================================================== */
+
+@media(max-width:992px){
+
+    #painel-principal{
+
+        width:92vw;
+
+        padding:50px;
+
+    }
+
+    #titulo h1{
+
+        font-size:2.5rem;
+
+    }
+
+    #introducao span{
+
+        font-size:1.6rem;
+
+    }
+
+    .mensagem{
+
+        font-size:1.15rem;
+
+    }
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVO - CELULARES
+   ========================================================================== */
+
+@media(max-width:768px){
+
+    body{
+
+        overflow-y:auto;
+
+        overflow-x:hidden;
+
+    }
+
+    #scanner-frame{
+
+        inset:0px;
+
+    }
+
+    #painel-principal{
+
+        width:95vw;
+
+        padding:35px 25px;
+
+        margin:50px 0;
+
+    }
+
+    #introducao{
+
+        gap:10px;
+
+        margin-bottom:45px;
+
+    }
+
+    #introducao span{
+
+        font-size:1.3rem;
+
+        line-height:1.5;
+
+    }
+
+    #titulo{
+
+        margin-bottom:40px;
+
+    }
+
+    #titulo h1{
+
+        font-size:2rem;
+
+    }
+
+    .pergunta{
+
+        font-size:1.25rem;
+
+    }
+
+    nav{
+
+        flex-direction:column;
+
+        gap:18px;
+
+    }
+
+    .botao{
+
+        width:100%;
+
+        min-width:auto;
+
+    }
+
+    #mensagens{
+
+        gap:12px;
+
+    }
+
+    .mensagem{
+
+        font-size:1rem;
+
+    }
+
+    #system-status{
+
+        right:15px;
+
+        bottom:15px;
+
+        font-size:.75rem;
+
+        opacity:.5;
+
+    }
+
+}
+
+
+/* ==========================================================================
+   TELAS MUITO PEQUENAS
+   ========================================================================== */
+
+@media(max-width:480px){
+
+    #titulo h1{
+
+        font-size:1.6rem;
+
+    }
+
+    #introducao span{
+
+        font-size:1.1rem;
+
+    }
+
+    .pergunta{
+
+        font-size:1.05rem;
+
+    }
+
+    .mensagem{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+
+/* ==========================================================================
+   FOCO
+   ========================================================================== */
+
+.botao:focus-visible{
+
+    outline:2px solid #00bfff;
+
+    outline-offset:6px;
+
+}
+
+
+/* ==========================================================================
+   CURSOR
+   ========================================================================== */
+
+.botao{
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================================================
+   MICROANIMAÇÃO DO STATUS
+   ========================================================================== */
+
+#system-status{
+
+    animation:statusFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes statusFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-4px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
